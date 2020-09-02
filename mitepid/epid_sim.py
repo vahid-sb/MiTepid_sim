@@ -84,7 +84,7 @@ class epid_sim:
         """
         import numpy as np
         from pathlib import Path
-        from policies import N_pop
+        from mitepid.policies import N_pop
 
         # main variables
         self.B = B
