@@ -91,7 +91,7 @@ class epid_sim:
         self.Ng = self.B.shape[0]  # number of age groups
         dir_save_plots_country = Path(dir_save_plots_main, country)
         self.dir_save_plots = Path(dir_save_plots_country, Path(str_policy))
-        self.dir_save_plots.mkdir(exist_ok = True, parents=True)
+        # self.dir_save_plots.mkdir(exist_ok = True, parents=True)
         self.country = country
         self.ref_class = ref_class
         self.model_type = model_type
@@ -120,12 +120,24 @@ class epid_sim:
         self.t = np.arange(0, t_end+.1e-5, step=t_step)
         self.model_type = model_type
         self.policy_definition = dict(zip(policy_switch_times, policy_list))
-
-        self.calc_sol()
+        self.list_policy_info = []
 
         self.N_pop = N_pop(self.country)
+        # calc the solytion
+        self.calc_sol()
 
 
+    # write a text file to disk including the detailed information on policy
+    def write_policy_info(self, ):
+        from pathlib import Path
+        file_policy = Path(self.dir_save_plots, 'policy_details.txt')
+
+        with open(file_policy, 'w') as my_tex:
+            for (t_switch1, policy, rho) in self.list_policy_info:
+                my_tex.write('\n %10.1f    --->  %s (R0 = %2.2f)'%(t_switch1, policy, rho))
+
+
+    # %% calculate solution
     def calc_sol(self, ):
         """
         epid_calss method.
@@ -163,7 +175,6 @@ class epid_sim:
                                          self.xternal_inputs,
                                          self.t_end,
                                          self.Ng)
-        file_policy = Path(self.dir_save_plots, 'policy_details.txt')
         print('*************************************************************')
         print('time (days)   --->  policy (R0 of policy)')
         print('---------------------------------------------')
@@ -177,9 +188,7 @@ class epid_sim:
                       policy=policy, )
 
             rho = np.max(np.abs(eigvals(np.matmul(-inv(self.D), B_step))))  # spectral radius
-
-            with open(file_policy, 'a') as my_tex:
-                my_tex.write('\n %10.1f    --->  %s (R0 = %2.2f)'%(t_switch1, policy, rho))
+            self.list_policy_info.append((t_switch1, policy, rho))
 
             #%% R_0 policy
             print('%10.1f    --->  %s (R0 = %2.2f)'%(t_switch1, policy, rho))
@@ -228,7 +237,7 @@ class epid_sim:
         self.sol_agg_dict = sol_agg_dict
 
     #################################################################################################
-    #%%
+    # %% correct_x0
     def correct_x0(self, x0):
         """
         Correct the size of vextor x0, initial conditions.
@@ -284,7 +293,7 @@ class epid_sim:
                 raise('Something wrong with initial conditions vector!')
         return x0
 
-    #%%
+    # %% plot_strat
     def plot_strat(self, suptitle = '', cmap='viridis'):
         """
         Plot solution to each individual group, all in one figure.
@@ -305,6 +314,8 @@ class epid_sim:
         from pathlib import Path
         import numpy as np
 
+        self.write_policy_info()
+
         for key in self.sol_dict.keys():
             if not self.ref_class is None:
                 sol_plot = np.concatenate((self.ref_class.sol_dict[key],
@@ -324,7 +335,7 @@ class epid_sim:
                       list_all_policies=self.policy_list,
                       ylabel=key,
                       cmap=cmap)
-    #%%
+    # %% plot_strat_multiax
     def plot_strat_multiax(self, suptitle = '', cmap='Dark2'):
         """
         Plot solution to each individual group, each in a different subtitle.
@@ -343,6 +354,8 @@ class epid_sim:
         """
         from mitepid.plots import bplot_strat_multiax
         from pathlib import Path
+
+        self.write_policy_info()
 
         for key in self.sol_dict.keys():
             if not self.ref_class is None:
@@ -370,7 +383,7 @@ class epid_sim:
                                 ylabel=key,
                                 cmap=cmap)
 
-    #%%
+    # %% plot_agg
     def plot_agg(self, suptitle = 'standard', cmap='viridis',
                  v_line=True, policy_legend=True,
                  plot_ref=True, t_end=None, N_pop=False):
@@ -392,6 +405,9 @@ class epid_sim:
         from pathlib import Path
         import numpy as np
         from mitepid.plots import bplot_agg
+
+        self.write_policy_info()
+
         for key in self.sol_dict.keys():
 
             if plot_ref and not self.ref_class is None:

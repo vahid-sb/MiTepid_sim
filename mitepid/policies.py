@@ -67,70 +67,72 @@ def str_policy_info():
     ---------------------------------------------------------------------------------------
 
     # these policies are defined intuitively,
-    #------------------------
-    if policy == 'Uncontained':
-        w_kids = 1
-        w_adults = 1
-        w_old =  1
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Schools_closed':
-        w_kids = 0.2
-        w_adults = 1
-        w_old =  1
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Elderly_self_isolate':
-        w_kids = 1.0
-        w_adults = 1.0
-        w_old = 0.25
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Kids_Elderly_self_isolate':
-        w_kids = 0.2
-        w_adults = 1.0
-        w_old = 0.25
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Social_Distancing':
-        w_kids = 0.2
-        w_adults = 0.2
-        w_old = 0.25
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Lockdown':
-        w_kids = 0.1
-        w_adults = 0.1
-        w_old = 0.1
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'R0_is_1':
-        w_kids = 0.2984
-        w_adults = 0.6047
-        w_old =  0.1015
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Schools_Offices_closed':
-        w_kids = 0.2
-        w_adults = 0.5
-        w_old = 1
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Adults_self_isolate':
-        w_adults = 0.4
-        list_scales = [1, 1, w_adults, w_adults, w_adults, w_adults, w_adults, 1, 1, ]
-    #------------------------
-    elif policy == 'Adults_Elderly_Self_isolate':
-        w_kids = 1
-        w_adults = 0.2
-        w_old = 0.25
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
-    #------------------------
-    elif policy == 'Lockdown_but_kids':
-        w_kids = 1
-        w_adults = 0.1
-        w_old = 0.1
-        list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+         #------------------------
+        if policy == 'Uncontained':
+            w_kids = 1
+            w_adults = 1
+            w_old =  1
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Schools_closed':
+            w_kids = 0.2
+            w_adults = 1
+            w_old =  1
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Elderly_self_isolate':
+            w_kids = 1.0
+            w_adults = 1.0
+            w_old = 0.25
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Kids_Elderly_self_isolate':
+            w_kids = 0.2
+            w_adults = 1.0
+            w_old = 0.25
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Social_Distancing':
+            w_kids = 0.2
+            w_adults = 0.2
+            w_old = 0.25
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Lockdown':
+            w_kids = 0.1
+            w_adults = 0.1
+            w_old = 0.1
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'R0_is_1':
+            w_kids = 0.2984
+            w_adults = 0.6047
+            w_old =  0.1015
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Schools_Offices_closed':
+            w_kids = 0.2
+            w_adults = 0.5
+            w_old = 1
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Adults_self_isolate':
+            w_adults = 0.4
+            list_scales = [1, 1, w_adults, w_adults, w_adults, w_adults, w_adults, 1, 1, ]
+        #------------------------
+        elif policy == 'Adults_Elderly_Self_isolate':
+            w_kids = 1
+            w_adults = 0.2
+            w_old = 0.25
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        #------------------------
+        elif policy == 'Lockdown_but_kids':
+            w_kids = 1
+            w_adults = 0.1
+            w_old = 0.1
+            list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
+        elif not policy == 'Uncontained':
+            raise('Policy was not recognized.')
 
     """
     return str_out
@@ -268,12 +270,13 @@ def get_pop_distr(country):
     dict_pop['China'] = [11.9, 11.6, 13.5, 15.6, 15.6, 15.0, 10.4, 4.7, 1.7]
     dict_pop['Italy'] = [8.4, 9.5, 10.1, 11.8, 15.3, 15.7, 12.3, 9.8, 7.1]
     dict_pop['Iran'] = [17.4, 13.9, 15.5, 20.0, 13.6, 9.7, 6.2, 2.7, 1.0]
-    dict_pop['SouthKorea'] = [8.4, 9.5, 13.3, 14.0, 16.3, 16.4, 12.1, 6.6, 3.4]
+    dict_pop['South Korea'] = [8.4, 9.5, 13.3, 14.0, 16.3, 16.4, 12.1, 6.6, 3.4]
     dict_pop['Germany'] = [9.2, 9.6, 11.2, 12.8, 12.5, 16.2, 12.4, 9.1, 7.0]
     dict_pop['Spain'] = [9.3, 10.0, 10.0, 13.2, 17.0, 14.8, 11.0, 8.5, 6.2]
     dict_pop['France'] = [11.8, 12.0, 11.4, 12.3, 12.9, 13.2, 12.0, 8.4, 6.0]
     dict_pop['UK'] = [12.0, 11.2, 12.8, 13.7, 12.9, 13.6, 10.8, 8.5, 5.1]  # fix it!
     dict_pop['USA'] = [12.1, 12.9, 14.0, 13.3, 12.3, 13.0, 11.5, 7.0, 3.9]
+    dict_pop['South Africa'] = [19.78, 17.49, 17.47, 16.98, 11.69, 8.19, 5.24, 2.44, 0.72]
 
     list_out = dict_pop[country]
     return list_out

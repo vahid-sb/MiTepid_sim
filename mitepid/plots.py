@@ -5,7 +5,7 @@ Created on Mon Mar  9 13:49:51 2020.
 
 @author: vbokharaie
 """
-#%%
+# %% bplot_strat
 def bplot_strat(t,
           sol,
           ylim=None,
@@ -150,9 +150,9 @@ def bplot_strat(t,
         dir_save.mkdir(exist_ok=True, parents=True)
         fig.savefig(filesave, dpi=100)
         filesave_pdf = filesave.with_suffix(".pdf")
-        fig.savefig(filesave_pdf, dpi=300, filetype='pdf', quality=100)
+        fig.savefig(filesave_pdf, dpi=300)
 
-#%%
+# %% bplot_strat_multiax
 def bplot_strat_multiax(t,
                         list_sol,
                         Ng,
@@ -291,9 +291,9 @@ def bplot_strat_multiax(t,
         dir_save.mkdir(exist_ok=True, parents=True)
         fig.savefig(filesave, dpi=100)
         filesave_pdf = filesave.with_suffix(".pdf")
-        fig.savefig(filesave_pdf, dpi=300, filetype='pdf', quality=100)
+        fig.savefig(filesave_pdf, dpi=300)
 
-#%%
+# %% bplot_agg
 def bplot_agg(t,
           sol,
           Ng,
@@ -386,8 +386,10 @@ def bplot_agg(t,
         colors = pl.cm.viridis_r(np.linspace(0,1,Ng))
     elif cmap == 'Dark2':
         colors = pl.cm.Dark2.colors
+        colors = colors + colors
     elif cmap == 'Set1':
         colors = pl.cm.Set1.colors
+        colors = colors + colors
     if if_plot_in_pc and N_population is None:
         if ylabel:
             ylabel = ylabel + ' (values in %)'
@@ -442,4 +444,4 @@ def bplot_agg(t,
         dir_save.mkdir(exist_ok=True, parents=True)
         fig.savefig(filesave, dpi=100)
         filesave_pdf = filesave.with_suffix(".pdf")
-        fig.savefig(filesave_pdf, dpi=300, filetype='pdf', quality=100)
+        fig.savefig(filesave_pdf, dpi=300)
