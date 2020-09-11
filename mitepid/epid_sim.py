@@ -131,7 +131,7 @@ class epid_sim:
     def write_policy_info(self, ):
         from pathlib import Path
         file_policy = Path(self.dir_save_plots, 'policy_details.txt')
-
+        self.dir_save_plots.mkdir(parents=True, exist_ok=True)
         with open(file_policy, 'w') as my_tex:
             for (t_switch1, policy, rho) in self.list_policy_info:
                 my_tex.write('\n %10.1f    --->  %s (R0 = %2.2f)'%(t_switch1, policy, rho))
@@ -212,7 +212,7 @@ class epid_sim:
                 sol_all = sol_step
             else:
                 sol_all = np.concatenate((sol_all, sol_step))
-
+            a=1
         country = self.country
         sol_dict = {}
         sol_agg_dict = {}

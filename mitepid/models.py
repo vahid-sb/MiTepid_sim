@@ -13,7 +13,7 @@ def SEIR(states, t, B, Gamma, Mu, Sigma):
     Parameters
     ----------
     states : numpy array
-        array of size 2*Ng for Infective (I) and Recovered (R) trajectories.
+        array of size 3*Ng for Infective (I) and Recovered (R) trajectories.
     t : numpy array
         time array of interest.
     B : numpy 2D array
@@ -33,24 +33,24 @@ def SEIR(states, t, B, Gamma, Mu, Sigma):
     """
     import numpy as np
     Ng = B.shape[0];
-    x = states[:Ng]  # I
-    y = states[Ng:2*Ng]  # R
-    z = states[2*Ng:3*Ng]  # E
-    dxdt = np.zeros(Ng)
-    dydt = np.zeros(Ng)
-    dzdt = np.zeros(Ng)
+    I = states[:Ng]  # I
+    R = states[Ng:2*Ng]  # R
+    E = states[2*Ng:3*Ng]  # E
+    dIdt = np.zeros(Ng)
+    dRdt = np.zeros(Ng)
+    dEdt = np.zeros(Ng)
     for i in np.arange(Ng):
         Sum_j_x = 0
         for j in np.arange(Ng):
-            Sum_j_x = Sum_j_x + B[i, j]* x[j]
+            Sum_j_x = Sum_j_x + B[i, j]* I[j]
         # E
-        dzdt[i] = (1 - x[i] - y[i] - z[i]) * Sum_j_x - (Mu[i, i] + Sigma[i, i]) * z[i]
+        dEdt[i] = (1 - I[i] - R[i] - E[i]) * Sum_j_x - (Mu[i, i] + Sigma[i, i]) * E[i]
         # I
-        dxdt[i] = Sigma[i, i] * z[i] - (Mu[i, i] + Gamma[i, i]) * x[i]
+        dIdt[i] = Sigma[i, i] * E[i] - (Mu[i, i] + Gamma[i, i]) * I[i]
         # R
-        dydt[i] = Gamma[i, i] * x[i] - Mu[i,i] * y[i]
+        dRdt[i] = Gamma[i, i] * I[i] - Mu[i,i] * R[i]
 
-    dsdt = np.concatenate((dxdt, dydt, dzdt))
+    dsdt = np.concatenate((dIdt, dRdt, dEdt))
     return dsdt
 
 def SIR(states, t, B, Gamma, Mu):
@@ -78,32 +78,32 @@ def SIR(states, t, B, Gamma, Mu):
     """
     import numpy as np
     Ng = B.shape[0];
-    x = states[:Ng]
-    y = states[Ng:]
-    dxdt = np.zeros(Ng);
-    dydt = np.zeros(Ng);
+    I = states[:Ng]
+    R = states[Ng:]
+    dIdt = np.zeros(Ng);
+    dRdt = np.zeros(Ng);
 
     for i in np.arange(Ng):
         #
         Sum_j_x = 0
         for j in np.arange(Ng):
-            Sum_j_x = Sum_j_x + B[i, j]* x[j]
+            Sum_j_x = Sum_j_x + B[i, j]* I[j]
         # I
-        dxdt[i] = (1-x[i]) * Sum_j_x - y[i] * Sum_j_x - (Mu[i, i] + Gamma[i, i]) * x[i]
+        dIdt[i] = (1-I[i]) * Sum_j_x - R[i] * Sum_j_x - (Mu[i, i] + Gamma[i, i]) * I[i]
         # R
-        dydt[i] = Gamma[i, i] * x[i] - Mu[i, i] * y[i]
+        dRdt[i] = Gamma[i, i] * I[i] - Mu[i, i] * R[i]
 
-    dsdt = np.concatenate((dxdt, dydt))
+    dsdt = np.concatenate((dIdt, dRdt))
     return dsdt
 
 
-def SIS(x, t, B, Gamma, Mu):
+def SIS(I, t, B, Gamma, Mu):
     """
     Simulate SIS model.
 
     Parameters
     ----------
-    x : numpy array
+    I : numpy array
         array of size Ng for Infective (I) trajectories.
     t : numpy array
         time array of interest.
@@ -116,19 +116,19 @@ def SIS(x, t, B, Gamma, Mu):
 
     Returns
     -------
-    dxdt : numpy array
+    dIdt : numpy array
         solution to the model.
 
     """
     import numpy as np
-    Ng = x.size;
-    dxdt = np.zeros(Ng)
+    Ng = I.size;
+    dIdt = np.zeros(Ng)
     for i in np.arange(Ng):
         Sum_j = 0
         for j in np.arange(Ng):
-            Sum_j = Sum_j + B[i, j]* x[j]
+            Sum_j = Sum_j + B[i, j]* I[j]
 
-        dxdt[i] = (1-x[i]) * Sum_j - (Mu[i, i] + Gamma[i, i]) * x[i]
-    return dxdt
+        dIdt[i] = (1-I[i]) * Sum_j - (Mu[i, i] + Gamma[i, i]) * I[i]
+    return dIdt
 
 

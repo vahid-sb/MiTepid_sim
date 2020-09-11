@@ -133,6 +133,9 @@ def bplot_strat(t,
         props = {'ha': 'center', 'va': 'center', 'bbox': bbox,}
         if not list_all_policies is None:
             my_text = list_all_policies[idx1]
+            if isinstance(my_text, (int, float)):
+                my_text = 'R0 = ' + str(my_text)
+
             # make sure policy label does not cover main plot
             idx_xc_in_t = [idx for idx, x in enumerate(t) if x>xc][0]
             if sol[idx_xc_in_t, 0] < 0.9*ylim_max and sol[idx_xc_in_t, 0] < 0.7*ylim_max:
@@ -307,7 +310,7 @@ def bplot_agg(t,
           list_all_policies=None,
           ylabel='',
           if_plot_in_pc=True,
-          cmap='Dark2',
+          cmap='tab20',
           policy_name_pos=0.75,
           v_line=True,
           policy_legend=True,
@@ -390,6 +393,12 @@ def bplot_agg(t,
     elif cmap == 'Set1':
         colors = pl.cm.Set1.colors
         colors = colors + colors
+    elif cmap == 'tab10':
+        colors = pl.cm.tab10.colors
+        colors = colors + colors
+    elif cmap == 'tab20':
+        colors = pl.cm.tab20.colors
+        colors = colors + colors
     if if_plot_in_pc and N_population is None:
         if ylabel:
             ylabel = ylabel + ' (values in %)'
@@ -407,7 +416,10 @@ def bplot_agg(t,
     for cc in np.arange(sol.shape[1]):
         # my_label = 'x'+str(cc+1).zfill(2)
         if not labels==['']:
-            ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
+            try:
+                ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
+            except:
+                a=1
             ax.legend(bbox_to_anchor=(1.2, 1.0), prop={'size': 24})
         else:
             ax.plot(t, sol[:, cc] * y_ax_scale, color = colors[cc], alpha=0.98)
@@ -426,6 +438,8 @@ def bplot_agg(t,
         props = {'ha': 'center', 'va': 'center', 'bbox': bbox,}
         if policy_legend and not list_all_policies is None:
             my_text = list_all_policies[idx1]
+            if isinstance(my_text, (int, float)):
+                my_text = 'R0 = ' + str(my_text)
             # make sure policy label does not cover main plot
             idx_xc_in_t = [idx for idx, x in enumerate(t) if x>xc][0]
             if sol[idx_xc_in_t, 0] < 0.9*ylim_max and sol[idx_xc_in_t, 0] < 0.7*ylim_max:
