@@ -212,7 +212,7 @@ class epid_sim:
                 sol_all = sol_step
             else:
                 sol_all = np.concatenate((sol_all, sol_step))
-            a=1
+
         country = self.country
         sol_dict = {}
         sol_agg_dict = {}
@@ -294,7 +294,9 @@ class epid_sim:
         return x0
 
     # %% plot_strat
-    def plot_strat(self, suptitle = '', cmap='viridis'):
+    def plot_strat(self, suptitle = '', cmap='viridis',
+                   v_line=True,
+                   policy_legend=True,):
         """
         Plot solution to each individual group, all in one figure.
 
@@ -334,9 +336,12 @@ class epid_sim:
                       list_vl=self.policy_switch_times,
                       list_all_policies=self.policy_list,
                       ylabel=key,
-                      cmap=cmap)
+                      cmap=cmap,
+                      v_line=v_line,
+                      policy_legend=policy_legend,)
     # %% plot_strat_multiax
-    def plot_strat_multiax(self, suptitle = '', cmap='Dark2'):
+    def plot_strat_multiax(self, suptitle = '', cmap='Dark2',
+                           v_line=True, policy_legend=True):
         """
         Plot solution to each individual group, each in a different subtitle.
 
@@ -381,7 +386,9 @@ class epid_sim:
                                 list_vl=self.policy_switch_times,
                                 list_all_policies=self.policy_list,
                                 ylabel=key,
-                                cmap=cmap)
+                                cmap=cmap,
+                                v_line=v_line,
+                                policy_legend=policy_legend,)
 
     # %% plot_agg
     def plot_agg(self, suptitle = 'standard', cmap='viridis',
@@ -396,8 +403,14 @@ class epid_sim:
             main title. The default is 'standard'.
         cmap : matplotlib.cm cmap, optional
             color map to use for the plot. The default is 'viridis'.
+        policy_legend: bool
+            if show policy legends in the plot
+        v_line: bool
+            if show vertical lines which indictae beginning of each policy.
+        N_population: int
+            to use for verticl axes instead of percentages
 
-        Returns
+            Returns
         -------
         None.
 
