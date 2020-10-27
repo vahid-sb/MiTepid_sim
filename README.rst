@@ -1,5 +1,5 @@
-MiTepid_sim
-===========
+MiTepid
+=======
 
 .. image:: https://img.shields.io/pypi/v/mitepid.svg
     :target: https://pypi.python.org/pypi/mitepid
@@ -7,6 +7,8 @@ MiTepid_sim
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
+ Introduction
+ ------------
 
 `MiTepid_sim`: A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tübingen.
 
