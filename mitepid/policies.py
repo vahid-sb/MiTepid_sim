@@ -239,7 +239,7 @@ def get_B_policy(file_data_opt=None, country='Germany', policy='Uncontained', B 
         elif policy == 'Lockdown_but_kids':
             w_kids = 1
             w_adults = 0.1
-            w_old = 0.1
+            w_adults = 0.1
             list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
         elif not policy == 'Uncontained':
             raise('Policy was not recognized.')

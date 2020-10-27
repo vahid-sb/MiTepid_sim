@@ -15,12 +15,12 @@ def read(filename):
 
 setup(
     name="MiTepid",
-    version="0.0.4",
+    version="0.0.5",
     url="https://github.com/vahid-sb/MiTepid_sim",
     license="GNU Version 3",
     author="Vahid Samadi Bokharaie",
-    author_email="vahid.bokharaie@tuebingen.mpg.de",
-    description="MiTepid_sim: A repository to simulate the spread of COVID-19 or any other disease. Made in Tübingen. ",
+    author_email="vahid.bokharaie@protonmail.com",
+    description="`MiTepid_sim`: A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tuebingen.",
     long_description=read("README.rst"),
     packages=find_packages(exclude=("tests", "venv")),
     test_suite="nose.collector",

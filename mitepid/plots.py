@@ -20,7 +20,10 @@ def bplot_strat(t,
           if_plot_in_pc=True,
           cmap='Dark2',
           Ng=None,
-          policy_name_pos=0.75,):
+          policy_name_pos=0.75,
+          policy_legend=True,
+          v_line=True,
+          N_population=None):
     """
     Line plots of the solutions to the epidemilogical model.
 
@@ -58,6 +61,12 @@ def bplot_strat(t,
         number of groups in the oringal model
     policy_name_pos : float
         in [0,1] range. Where in y axis should the text for each policy be insterted.
+    policy_legend: bool
+        if show policy legends in the plot
+    v_line= bool
+        if show vertical lines which indictae beginning of each policy.
+    N_population: int
+        to use for verticl axes instead of percentages
 
     Returns
     -------
@@ -108,6 +117,9 @@ def bplot_strat(t,
     else:
         y_ax_scale = 1
 
+    if not N_population is None:
+        sol = sol*N_population
+
     fig, ax = plt.subplots(1, 1, figsize=(24,18))
     ax.set_facecolor('0.95')
     fig.subplots_adjust(bottom=0.15, top=0.92, left=0.1, right = 0.85)
@@ -128,11 +140,15 @@ def bplot_strat(t,
         ax.set_ylabel(ylabel)
         ylim_max = ax.get_ylim()[1]
     for idx1, xc in enumerate(list_vl):
-        ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
+        if v_line:
+            ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
         bbox = {'fc': '0.9', 'pad': 4, 'alpha': 0.3}
         props = {'ha': 'center', 'va': 'center', 'bbox': bbox,}
-        if not list_all_policies is None:
+        if policy_legend and not list_all_policies is None:
             my_text = list_all_policies[idx1]
+            if isinstance(my_text, (int, float)):
+                my_text = 'R0 = ' + str(my_text)
+
             # make sure policy label does not cover main plot
             idx_xc_in_t = [idx for idx, x in enumerate(t) if x>xc][0]
             if sol[idx_xc_in_t, 0] < 0.9*ylim_max and sol[idx_xc_in_t, 0] < 0.7*ylim_max:
@@ -168,7 +184,10 @@ def bplot_strat_multiax(t,
                         ylabel='',
                         if_plot_in_pc=True,
                         cmap='Dark2',
-                        policy_name_pos=0.75,):
+                        policy_name_pos=0.75,
+                        policy_legend=True,
+                        v_line=True,
+                        N_population=None):
     """
     Line plots of the solutions to the epidemilogical model.
 
@@ -206,6 +225,12 @@ def bplot_strat_multiax(t,
         number of groups in the oringal model
     policy_name_pos : float
         in [0,1] range. Where in y axis should the text for each policy be insterted.
+   policy_legend: bool
+        if show policy legends in the plot
+    v_line= bool
+        if show vertical lines which indictae beginning of each policy.
+    N_population: int
+        to use for verticl axes instead of percentages
 
     Returns
     -------
@@ -254,6 +279,9 @@ def bplot_strat_multiax(t,
     else:
         y_ax_scale = 1
 
+    if not N_population is None:
+        for idx, sol in enumerate(list_sol):
+            list_sol[idx] = sol*N_population
 
     fig, ax_all = plt.subplots(Ng, 1, figsize=(18,18))
     fig.tight_layout()
@@ -281,7 +309,8 @@ def bplot_strat_multiax(t,
             ax.set_ylabel(ylabels[cc], rotation=90)
         # ylim_max = ax.get_ylim()[1]
         for idx1, xc in enumerate(list_vl):
-            ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
+            if v_line:
+                ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
     fig.suptitle(suptitle, fontsize=16, fontweight='bold')
 
     if not if_show:
@@ -307,7 +336,7 @@ def bplot_agg(t,
           list_all_policies=None,
           ylabel='',
           if_plot_in_pc=True,
-          cmap='Dark2',
+          cmap='tab20',
           policy_name_pos=0.75,
           v_line=True,
           policy_legend=True,
@@ -349,6 +378,12 @@ def bplot_agg(t,
         number of groups in the oringal model
     policy_name_pos : float
         in [0,1] range. Where in y axis should the text for each policy be insterted.
+    policy_legend: bool
+        if show policy legends in the plot
+    v_line: bool
+        if show vertical lines which indictae beginning of each policy.
+    N_population: int
+        to use for verticl axes instead of percentages
 
     Returns
     -------
@@ -390,6 +425,12 @@ def bplot_agg(t,
     elif cmap == 'Set1':
         colors = pl.cm.Set1.colors
         colors = colors + colors
+    elif cmap == 'tab10':
+        colors = pl.cm.tab10.colors
+        colors = colors + colors
+    elif cmap == 'tab20':
+        colors = pl.cm.tab20.colors
+        colors = colors + colors
     if if_plot_in_pc and N_population is None:
         if ylabel:
             ylabel = ylabel + ' (values in %)'
@@ -407,7 +448,10 @@ def bplot_agg(t,
     for cc in np.arange(sol.shape[1]):
         # my_label = 'x'+str(cc+1).zfill(2)
         if not labels==['']:
-            ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
+            try:
+                ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
+            except:
+                a=1
             ax.legend(bbox_to_anchor=(1.2, 1.0), prop={'size': 24})
         else:
             ax.plot(t, sol[:, cc] * y_ax_scale, color = colors[cc], alpha=0.98)
@@ -426,6 +470,8 @@ def bplot_agg(t,
         props = {'ha': 'center', 'va': 'center', 'bbox': bbox,}
         if policy_legend and not list_all_policies is None:
             my_text = list_all_policies[idx1]
+            if isinstance(my_text, (int, float)):
+                my_text = 'R0 = ' + str(my_text)
             # make sure policy label does not cover main plot
             idx_xc_in_t = [idx for idx, x in enumerate(t) if x>xc][0]
             if sol[idx_xc_in_t, 0] < 0.9*ylim_max and sol[idx_xc_in_t, 0] < 0.7*ylim_max:
