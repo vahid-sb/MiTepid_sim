@@ -1,4 +1,4 @@
-`MiTepid_sim`
+MiTepid_sim
 ===========
 
 .. image:: https://img.shields.io/pypi/v/mitepid.svg

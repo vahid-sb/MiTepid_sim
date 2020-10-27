@@ -20,7 +20,7 @@ setup(
     license="GNU Version 3",
     author="Vahid Samadi Bokharaie",
     author_email="vahid.bokharaie@protonmail.com",
-    description="`MiTepid_sim`: A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tuebingen.",
+    description="MiTepid_sim: A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tuebingen.",
     long_description=read("README.rst"),
     packages=find_packages(exclude=("tests", "venv")),
     test_suite="nose.collector",
