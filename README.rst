@@ -38,7 +38,7 @@ The `MiTepid_sim` library can be installed using the following command:
 
     pip install mitepid
 
-Or you can install it directly from the 'repository <https://github.com/vahid-sb/`MiTepid_sim`>`_.
+Or you can install it directly from the repository.
 
 Requirements
 ^^^^^^^^^^^^
