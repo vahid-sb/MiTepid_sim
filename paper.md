@@ -1,6 +1,6 @@
 
 ---
-title: 'A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tübingen.'
+title: 'A Repository to Simulate the Spread of COVID-19 in any Population with a Known Age-Structure, Made in Tübingen.'
 tags:
   - Python
   - Mathematical Epidemiology
