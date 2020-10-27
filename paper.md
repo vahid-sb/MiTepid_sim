@@ -1,14 +1,14 @@
 
 ---
-title: 'MiTepid_sim: A repository to simulate the spread of COVID-19 or any other disease.'
+title: 'A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tübingen.'
 tags:
   - Python
-  - mathematical epidemiology
-  - dynamical systems
+  - Mathematical Epidemiology
+  - Dynamical Systems
   - COVID-19
   - SARS-CoV-2
   - Compartmental Models
-  - Nonilnear Systems
+  - Nonlinear Systems
 authors:
   - name: Vahid S. Bokharaie
     orcid: 0000-0001-6544-7960
@@ -16,7 +16,7 @@ authors:
 affiliations:
  - name: Max Planck Institute for Biological Cybernetics, Tuebingen, Germany
    index: 1
-date: 30 September 2020
+date: 20 October 2020
 bibliography: paper.bib
 ---
 

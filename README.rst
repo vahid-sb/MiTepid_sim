@@ -10,7 +10,7 @@ MiTepid_sim
 Introduction
 ------------
 
-`MiTepid_sim`: A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tübingen.
+`MiTepid_sim`: A Repository to Simulate the Spread of COVID-19 in any Population with a Known Age-Structure, Made in Tübingen.
 
 What this library has to offer can be summarized as follows:
 
