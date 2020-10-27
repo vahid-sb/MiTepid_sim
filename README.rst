@@ -1,5 +1,5 @@
-MiTepid
-=======
+MiTepid_sim
+===========
 
 .. image:: https://img.shields.io/pypi/v/mitepid.svg
     :target: https://pypi.python.org/pypi/mitepid
