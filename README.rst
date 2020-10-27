@@ -7,8 +7,8 @@ MiTepid
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
- Introduction
- ------------
+Introduction
+------------
 
 `MiTepid_sim`: A repository to simulate the spread of COVID-19 in any population with a known age-structure, Made in Tübingen.
 
@@ -32,7 +32,7 @@ There are a few scripts in the `examples` folder in the repository which can be 
 
 Installation
 ------------
-  The `MiTepid_sim` library can be installed using the following command:
+The `MiTepid_sim` library can be installed using the following command:
 
  .. code-block:: bash
 
