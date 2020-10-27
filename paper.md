@@ -17,7 +17,7 @@ affiliations:
  - name: Max Planck Institute for Biological Cybernetics, Tuebingen, Germany
    index: 1
 date: 30 September 2020
-
+bibliography: paper.bib
 ---
 
 # Summary
