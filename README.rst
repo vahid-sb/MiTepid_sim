@@ -25,7 +25,7 @@ What this library has to offer can be summarized as follows:
 
 * The library comes with a set of visualizations tools that allows us to generate various plots necessary to study the effects of each policy in the evolution of the trajectories of different compartments. We can plot the trajectories per age group or as an aggregate for the whole population.
 
-* The contact rates used in the examples are the output of an optimisation scheme as implemented in `MiTepid_opt <https://github.com/vahid-sb/MiTepid_opt>`_ package. 
+* The contact rates used in the examples are the output of an optimisation scheme as implemented in `MiTepid_opt <https://github.com/vahid-sb/MiTepid_opt>`_ package.
 
 Examples
 --------
@@ -40,7 +40,6 @@ The `MiTepid_sim` library can be installed using the following command:
 
     pip install mitepid
 
-Or you can install it directly from the repository.
 
 Requirements
 ^^^^^^^^^^^^
