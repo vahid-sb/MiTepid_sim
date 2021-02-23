@@ -202,7 +202,7 @@ def get_B_policy(file_data_opt=None, country='Germany', policy='Uncontained', B 
             w_old = 0.25
             list_scales = [w_kids, w_kids, w_adults, w_adults, w_adults, w_adults, w_adults, w_old, w_old, ]
         #------------------------
-        elif policy == 'Social_Distancing':
+        elif policy == 'Social_Distancing' or policy == 'SD':
             w_kids = 0.2
             w_adults = 0.2
             w_old = 0.25

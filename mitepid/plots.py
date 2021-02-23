@@ -20,7 +20,7 @@ def bplot_strat(t,
           if_plot_in_pc=True,
           cmap='Dark2',
           Ng=None,
-          policy_name_pos=0.75,
+          policy_name_pos=0.8,
           policy_legend=True,
           v_line=True,
           N_population=None):
@@ -87,16 +87,16 @@ def bplot_strat(t,
     # plt.style.use('ggplot')
     # mpl.rcParams['lines.linewidth'] = 3.0
     # mpl.rcParams['font.weight'] = 'bold'
-    font_size = 30
+    font_size = 40
     font = {'family' : 'DejaVu Sans',
                 'sans-serif' : 'Tahoma',
-                'weight' : 'regular',
+                'weight' : 'bold',
                 'size'   : font_size}
     mpl.rc('grid', color='#316931', linewidth=1, linestyle='dotted')
     mpl.rc('font', **font)
     mpl.rc('lines', lw=3,)
-    mpl.rc('xtick', labelsize=font_size)
-    mpl.rc('ytick', labelsize=font_size)
+    # mpl.rc('xtick', labelsize=font_size)
+    # mpl.rc('ytick', labelsize=font_size)
 
     if cmap == 'viridis_r':
         colors = pl.cm.viridis_r(np.linspace(0,1,Ng))
@@ -121,28 +121,28 @@ def bplot_strat(t,
         sol = sol*N_population
 
     fig, ax = plt.subplots(1, 1, figsize=(24,18))
-    ax.set_facecolor('0.95')
+    # ax.set_facecolor('0.95')
     fig.subplots_adjust(bottom=0.15, top=0.92, left=0.1, right = 0.85)
     for cc in np.arange(Ng):
         # my_label = 'x'+str(cc+1).zfill(2)
 
         if not labels==['']:
             ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
-            ax.legend(bbox_to_anchor=(1.2, 1.0), prop={'size': 24})
+            ax.legend(bbox_to_anchor=(1.2, 1.0), prop={'size': 24, 'weight': 'bold'})
         else:
             ax.plot(t, sol[:, cc] * y_ax_scale, color = colors[cc], alpha=0.98)
 
         if ylim:
             ax.set_ylim(ylim)
-        ax.set_xlabel('\nTime (days)')
+        ax.set_xlabel('\nTime (days)', fontweight='bold')
         ax.set_xticks(np.arange(0, t[-1], step=30))
         plt.xticks(rotation=90)
-        ax.set_ylabel(ylabel)
+        ax.set_ylabel(ylabel, fontweight='bold')
         ylim_max = ax.get_ylim()[1]
     for idx1, xc in enumerate(list_vl):
         if v_line:
             ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
-        bbox = {'fc': '0.9', 'pad': 4, 'alpha': 0.3}
+        bbox = {'fc': '0.92', 'pad': 4, 'alpha': 0.3}
         props = {'ha': 'center', 'va': 'center', 'bbox': bbox,}
         if policy_legend and not list_all_policies is None:
             my_text = list_all_policies[idx1]
@@ -156,17 +156,18 @@ def bplot_strat(t,
             else:
                 policy_label_loc = 0.3*ylim_max
             xc_plot = xc+10*t[-1]/500
-            ax.text(xc_plot, policy_label_loc, my_text, props, rotation=90, color='k', alpha=0.7)
-    fig.suptitle(suptitle, fontsize=16, fontweight='bold')
+            ax.text(xc_plot, policy_label_loc, my_text, props,
+                    rotation=90, color='k', alpha=0.7, fontweight='bold', fontsize=40)
+    fig.suptitle(suptitle, fontsize=24, fontweight='bold')
 
     if not if_show:
         plt.close('all')
     if if_save:
         dir_save = filesave.parent
         dir_save.mkdir(exist_ok=True, parents=True)
-        fig.savefig(filesave, dpi=100)
+        fig.savefig(filesave, dpi=150)
         filesave_pdf = filesave.with_suffix(".pdf")
-        fig.savefig(filesave_pdf, dpi=300)
+        fig.savefig(filesave_pdf, dpi=150)
 
 # %% bplot_strat_multiax
 def bplot_strat_multiax(t,
@@ -251,16 +252,16 @@ def bplot_strat_multiax(t,
     # plt.style.use('ggplot')
     # mpl.rcParams['lines.linewidth'] = 3.0
     # mpl.rcParams['font.weight'] = 'bold'
-    font_size = 24
+    font_size = 40
     font = {'family' : 'DejaVu Sans',
                 'sans-serif' : 'Tahoma',
-                'weight' : 'regular',
+                'weight' : 'bold',
                 'size'   : font_size}
     mpl.rc('grid', color='#316931', linewidth=1, linestyle='dotted')
     mpl.rc('font', **font)
     mpl.rc('lines', lw=3,)
-    mpl.rc('xtick', labelsize=font_size)
-    mpl.rc('ytick', labelsize=font_size)
+    # mpl.rc('xtick', labelsize=font_size)
+    # mpl.rc('ytick', labelsize=font_size)
 
     if cmap == 'viridis_r':
         colors = pl.cm.viridis_r(np.linspace(0,1,Ng))
@@ -283,7 +284,7 @@ def bplot_strat_multiax(t,
         for idx, sol in enumerate(list_sol):
             list_sol[idx] = sol*N_population
 
-    fig, ax_all = plt.subplots(Ng, 1, figsize=(18,18))
+    fig, ax_all = plt.subplots(Ng, 1, figsize=(20,18))
     fig.tight_layout()
     fig.subplots_adjust(bottom=0.1, top=0.95, left = 0.1)
     # colors = pl.cm.viridis_r(np.linspace(0,1,2))
@@ -294,33 +295,33 @@ def bplot_strat_multiax(t,
         for cc2, sol in enumerate(list_sol):
             if cc==0:
                 ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc2], color = colors[cc2], alpha=0.98)
-                ax.legend(prop={'size': 14})
+                ax.legend(prop={'size': 24, 'weight': 'bold'})
             else:
                 ax.plot(t, sol[:, cc] * y_ax_scale, color = colors[cc2], alpha=0.98)  # policy
         if ylim:
             ax.set_ylim(ylim)
         if cc == Ng-1:
-            ax.set_xlabel('\nTime (days)')
+            ax.set_xlabel('\nTime (days)', fontweight='bold')
             plt.xticks(rotation=90)
         else:
             ax.xaxis.set_ticklabels([])
         ax.set_xticks(np.arange(0, t[-1], step=30))
         if not ylabels==['']:
-            ax.set_ylabel(ylabels[cc], rotation=90)
+            ax.set_ylabel(ylabels[cc], rotation=90, fontweight='bold')
         # ylim_max = ax.get_ylim()[1]
         for idx1, xc in enumerate(list_vl):
             if v_line:
                 ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
-    fig.suptitle(suptitle, fontsize=16, fontweight='bold')
+    fig.suptitle(suptitle, fontsize=24, fontweight='bold')
 
     if not if_show:
         plt.close('all')
     if if_save:
         dir_save = filesave.parent
         dir_save.mkdir(exist_ok=True, parents=True)
-        fig.savefig(filesave, dpi=100)
+        fig.savefig(filesave, dpi=150)
         filesave_pdf = filesave.with_suffix(".pdf")
-        fig.savefig(filesave_pdf, dpi=300)
+        fig.savefig(filesave_pdf, dpi=150)
 
 # %% bplot_agg
 def bplot_agg(t,
@@ -337,7 +338,7 @@ def bplot_agg(t,
           ylabel='',
           if_plot_in_pc=True,
           cmap='tab20',
-          policy_name_pos=0.75,
+          policy_name_pos=0.8,
           v_line=True,
           policy_legend=True,
           N_population=None):
@@ -404,15 +405,15 @@ def bplot_agg(t,
     # plt.style.use('ggplot')
     # mpl.rcParams['lines.linewidth'] = 3.0
     # mpl.rcParams['font.weight'] = 'bold'
-    font_size = 30
+    font_size = 40
     font = {'family' : 'DejaVu Sans',
                 'sans-serif' : 'Tahoma',
-                'weight' : 'regular',
+                'weight' : 'bold',
                 'size'   : font_size}
     mpl.rc('grid', color='#316931', linewidth=1, linestyle='dotted')
     mpl.rc('font', **font)
     mpl.rc('lines', lw=3,)
-    mpl.rc('xtick', labelsize=font_size)
+    mpl.rc('xtick', labelsize=font_size, )
     mpl.rc('ytick', labelsize=font_size)
 
     if cmap == 'viridis_r':
@@ -433,7 +434,7 @@ def bplot_agg(t,
         colors = colors + colors
     if if_plot_in_pc and N_population is None:
         if ylabel:
-            ylabel = ylabel + ' (values in %)'
+            ylabel = ylabel + ' (in %)'
 
         y_ax_scale = 100
     else:
@@ -441,32 +442,33 @@ def bplot_agg(t,
 
     if not N_population is None:
         sol = sol*N_population
-    fig, ax = plt.subplots(1, 1, figsize=(24,18))
-    ax.set_facecolor('0.95')
+    fig, ax = plt.subplots(1, 1, figsize=(25,18))
+    # ax.set_facecolor('0.95')
     fig.subplots_adjust(bottom=0.15, top=0.92, left=0.1, right = 0.85)
-
+    # fig.tight_layout()
     for cc in np.arange(sol.shape[1]):
         # my_label = 'x'+str(cc+1).zfill(2)
         if not labels==['']:
             try:
-                ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
+                ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], alpha=0.98)
+                # ax.plot(t, sol[:, cc] * y_ax_scale, label=labels[cc], color = colors[cc], alpha=0.98)
             except:
                 a=1
-            ax.legend(bbox_to_anchor=(1.2, 1.0), prop={'size': 24})
+            ax.legend(bbox_to_anchor=(1.21, 1.0), prop={'size': 30, 'weight': 'bold'})
         else:
             ax.plot(t, sol[:, cc] * y_ax_scale, color = colors[cc], alpha=0.98)
 
         if ylim:
             ax.set_ylim(ylim)
-        ax.set_xlabel('\nTime (days)')
+        ax.set_xlabel('\nTime (days)', fontweight='bold')
         ax.set_xticks(np.arange(0, t[-1], step=30))
         plt.xticks(rotation=90)
-        ax.set_ylabel(ylabel)
+        ax.set_ylabel(ylabel, fontweight='bold')
         ylim_max = ax.get_ylim()[1]
     for idx1, xc in enumerate(list_vl):
         if v_line:
             ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
-        bbox = {'fc': '0.9', 'pad': 4, 'alpha': 0.3}
+        bbox = {'fc': '0.92', 'pad': 4, 'alpha': 0.3}
         props = {'ha': 'center', 'va': 'center', 'bbox': bbox,}
         if policy_legend and not list_all_policies is None:
             my_text = list_all_policies[idx1]
@@ -479,8 +481,9 @@ def bplot_agg(t,
             else:
                 policy_label_loc = 0.3*ylim_max
             xc_plot = xc+10*t[-1]/500
-            ax.text(xc_plot, policy_label_loc, my_text, props, rotation=90, color='k', alpha=0.7)
-    fig.suptitle(suptitle, fontsize=16, fontweight='bold')
+            ax.text(xc_plot, policy_label_loc, my_text, props,
+                    rotation=90, color='k', alpha=0.6, fontweight='bold', fontsize=40)
+    fig.suptitle(suptitle, fontsize=24, fontweight='bold')
     # ax.axvline(x=xc, color='r', linestyle='--', linewidth=1)
 
     if not if_show:
@@ -488,6 +491,6 @@ def bplot_agg(t,
     if if_save:
         dir_save = filesave.parent
         dir_save.mkdir(exist_ok=True, parents=True)
-        fig.savefig(filesave, dpi=100)
+        fig.savefig(filesave, dpi=150)
         filesave_pdf = filesave.with_suffix(".pdf")
-        fig.savefig(filesave_pdf, dpi=300)
+        fig.savefig(filesave_pdf, dpi=150)
