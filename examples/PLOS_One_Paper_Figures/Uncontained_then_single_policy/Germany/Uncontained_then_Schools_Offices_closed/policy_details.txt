@@ -1,0 +1,3 @@
+
+        0.0    --->  Uncontained (R0 = 2.95)
+       60.0    --->  Schools_Offices_closed (R0 = 1.67)

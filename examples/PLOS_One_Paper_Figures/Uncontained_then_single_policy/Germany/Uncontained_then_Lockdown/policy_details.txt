@@ -1,0 +1,3 @@
+
+        0.0    --->  Uncontained (R0 = 2.95)
+       60.0    --->  Lockdown (R0 = 0.30)

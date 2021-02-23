@@ -1,0 +1,9 @@
+
+        country &   end_R   &   max_I 
+        Germany &  $81.79\%$ &  $18.40\%$ \\ \hline
+          Italy &  $81.82\%$ &  $18.38\%$ \\ \hline
+          Spain &  $81.99\%$ &  $18.40\%$ \\ \hline
+            USA &  $81.18\%$ &  $17.87\%$ \\ \hline
+          China &  $77.36\%$ &  $15.71\%$ \\ \hline
+           Iran &  $71.27\%$ &  $13.61\%$ \\ \hline
+   South Africa &  $69.14\%$ &  $12.80\%$ \\ \hline

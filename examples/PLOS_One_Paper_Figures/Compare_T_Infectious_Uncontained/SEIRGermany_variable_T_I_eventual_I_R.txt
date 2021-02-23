@@ -1,0 +1,12 @@
+
+          T_i   &   end_R   &   max_I 
+      Ti 5 days &  $91.77\%$ &  $14.35\%$ \\ \hline
+      Ti 6 days &  $91.74\%$ &  $15.59\%$ \\ \hline
+      Ti 7 days &  $90.90\%$ &  $15.88\%$ \\ \hline
+      Ti 8 days &  $89.86\%$ &  $16.47\%$ \\ \hline
+      Ti 9 days &  $92.40\%$ &  $18.51\%$ \\ \hline
+     Ti 10 days &  $91.87\%$ &  $19.04\%$ \\ \hline
+     Ti 11 days &  $91.46\%$ &  $19.48\%$ \\ \hline
+     Ti 12 days &  $89.65\%$ &  $19.08\%$ \\ \hline
+     Ti 13 days &  $89.84\%$ &  $20.17\%$ \\ \hline
+     Ti 14 days &  $88.34\%$ &  $20.72\%$ \\ \hline

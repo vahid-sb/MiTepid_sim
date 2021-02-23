@@ -1,0 +1,4 @@
+
+          T_i   &   end_R   &  end_R-R_init   &   max_I 
+        uniform &  $46.97\%$ &  $31.97\%$&  $1.05\%$ \\ \hline
+      optimised &  $44.28\%$ &  $29.28\%$&  $0.87\%$ \\ \hline
