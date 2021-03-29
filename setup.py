@@ -25,7 +25,7 @@ setup(
     packages=find_packages(exclude=("tests", "venv")),
     test_suite="nose.collector",
     tests_require=["nose"],
-    package_data={"mitepid": ["Optimised_B/*.*", "requirements.txt"]},
+    package_data={"mitepid": ["requirements.txt"]},
     include_package_data=True,
     install_requires=[
     "numpy",
